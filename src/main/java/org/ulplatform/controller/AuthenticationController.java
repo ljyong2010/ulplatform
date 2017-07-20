@@ -25,8 +25,8 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @RequestMapping("/getToken")
-    public String createToken(@RequestParam("userid") String userid){
-        JSONObject jsonObject = authenticationService.createTokenService(userid);
+    public String createToken(@RequestParam("userid") String userid,@RequestParam("urltype") String urltype){
+        JSONObject jsonObject = authenticationService.createTokenService(userid,urltype);
         return jsonObject.toJSONString();
     }
 
@@ -36,8 +36,8 @@ public class AuthenticationController {
         return jsonObject.toJSONString();
     }
     @RequestMapping("/unifauthentication")
-    public String unifauth(@RequestParam("token") String token,@RequestParam("ctype") String ctype,@RequestParam String userName){
-        JSONObject jsonObject = authenticationService.unifauthService(token,ctype,userName);
+    public String unifauth(@RequestParam("token") String token,@RequestParam("systemId") String systemId,@RequestParam String userName){
+        JSONObject jsonObject = authenticationService.unifauthService(token,systemId,userName);
         return jsonObject.toJSONString();
     }
 }

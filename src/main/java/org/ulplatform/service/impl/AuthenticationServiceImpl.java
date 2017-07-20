@@ -24,19 +24,27 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private RedisCache redisCache;
 
     @Override
-    public JSONObject createTokenService(String userid) {
+    public JSONObject createTokenService(String userid,String urltype) {
         JSONObject jsonObject = new JSONObject();
-        DefaultTokenManager defaultTokenManager = new DefaultTokenManager();
-        try {
-            String token = defaultTokenManager.createToken(userid);
-            redisCache.putCache(token,userid);
-            jsonObject.put("token",token);
-            jsonObject.put("code",0);
+        if (StringUtil.isequals(urltype,"hyjkoa")){
+            DefaultTokenManager defaultTokenManager = new DefaultTokenManager();
+            try {
+                String token = defaultTokenManager.createToken(userid);
+                redisCache.putCache(token,userid);
+                jsonObject.put("token",token);
+                jsonObject.put("code",0);
+                return jsonObject;
+            }catch (Exception e){
+                LOGGER.error("create token fail!");
+                jsonObject.put("token","create token error");
+                jsonObject.put("code",1);
+                return jsonObject;
+            }
+        }else {
+            jsonObject.put("token", "Unreasonable request");
+            jsonObject.put("code",2);
             return jsonObject;
-        }catch (Exception e){
-            LOGGER.error("create token fail!");
         }
-        return null;
     }
 
     @Override
@@ -62,13 +70,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public JSONObject unifauthService(String token, String ctype,String userName) {
+    public JSONObject unifauthService(String token, String systemId,String userName) {
         JSONObject jsonObject = new JSONObject();
         if (StringUtil.isNotEmpty(redisCache.getCache(token))){
             String users = redisCache.getCache(StringUtil.addPrefix(token));
             if (StringUtil.isNotEmpty(users)){
                 jsonObject=JSON.parseObject(users);
-                if (StringUtil.isequals(ctype,jsonObject.getString("ctype"))&&StringUtil.isequals(userName,jsonObject.getString("userName"))){
+                if (StringUtil.isequals(systemId,jsonObject.getString("systemId"))&&StringUtil.isequals(userName,jsonObject.getString("userName"))){
                     jsonObject.put("code",0);
                     jsonObject.put("msg","success");
                     return jsonObject;

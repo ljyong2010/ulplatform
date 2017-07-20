@@ -8,10 +8,12 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = -190734710746841476L;
     private String userName;
+    private String userid;
     private String name;
+    private String deptcode;
     private String department;
     private String telephone;
-    private String ctype;
+    private String systemId;
 
     public String getUserName() {
         return userName;
@@ -21,12 +23,28 @@ public class UserInfo implements Serializable {
         this.userName = userName;
     }
 
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDeptcode() {
+        return deptcode;
+    }
+
+    public void setDeptcode(String deptcode) {
+        this.deptcode = deptcode;
     }
 
     public String getDepartment() {
@@ -45,22 +63,24 @@ public class UserInfo implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getCtype() {
-        return ctype;
+    public String getSystemId() {
+        return systemId;
     }
 
-    public void setCtype(String ctype) {
-        this.ctype = ctype;
+    public void setSystemId(String systemId) {
+        this.systemId = systemId;
     }
 
     @Override
     public String toString() {
         return "UserInfo{" +
                 "userName='" + userName + '\'' +
+                ", userid='" + userid + '\'' +
                 ", name='" + name + '\'' +
+                ", deptcode='" + deptcode + '\'' +
                 ", department='" + department + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", ctype='" + ctype + '\'' +
+                ", systemId='" + systemId + '\'' +
                 '}';
     }
 }
