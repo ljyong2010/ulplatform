@@ -5,6 +5,12 @@ package org.ulplatform.utils;
  * Created by Administrator on 2017-7-8.
  */
 public class StringUtil {
+    public static boolean isequals(String firstStr,String secondStr){
+        if (firstStr.equalsIgnoreCase(secondStr)){
+            return true;
+        }
+        return false;
+    }
     /**
      * 给定字符串是否为空或空串
      * @param str

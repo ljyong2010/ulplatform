@@ -2,6 +2,8 @@ package org.ulplatform.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.ulplatform.authorization.DefaultTokenManager;
@@ -16,63 +18,26 @@ import org.ulplatform.utils.cache.RedisCache;
 @RestController
 @RequestMapping("/authentiaction")
 public class AuthenticationController {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
+
     @Autowired
     private AuthenticationService authenticationService;
 
-    @Autowired
-    private RedisCache redisCache;
-
-
     @RequestMapping("/getToken")
     public String createToken(@RequestParam("userid") String userid){
-        DefaultTokenManager defaultTokenManager = new DefaultTokenManager();
-        JSONObject jsonObject = new JSONObject();
-        String token = defaultTokenManager.createToken(userid);
-        redisCache.putCache(token,userid);
-        jsonObject.put("token",token);
-        jsonObject.put("userid",userid);
-        jsonObject.put("code",0);
+        JSONObject jsonObject = authenticationService.createTokenService(userid);
         return jsonObject.toJSONString();
     }
+
     @RequestMapping(value = "/sendListInfo",method = RequestMethod.POST)
     public String sendListUserInfo(@RequestParam("token") String token, @RequestBody UserInfo userInfo){
-        JSONObject jsonObject = new JSONObject();
-        if (StringUtil.isNotEmpty(redisCache.getCache(token))){
-            String users = JSON.toJSONString(userInfo);
-            System.out.println(users);
-            if(redisCache.putCache(StringUtil.addPrefix(token),users)){
-                jsonObject.put("msg","success");
-                jsonObject.put("code",0);
-                return jsonObject.toJSONString();
-            }else {
-                jsonObject.put("msg","save userinfo error!");
-                jsonObject.put("code",1);
-                return jsonObject.toJSONString();
-            }
-        }else {
-            jsonObject.put("msg","token authentication fail!");
-            jsonObject.put("code",2);
-            return jsonObject.toJSONString();
-        }
+        JSONObject jsonObject = authenticationService.sendListUserInfoService(token, userInfo);
+        return jsonObject.toJSONString();
     }
     @RequestMapping("/unifauthentication")
-    public String unifauth(@RequestParam("token") String token,@RequestParam("cid") String cid){
-        JSONObject jsonObject = new JSONObject();
-        if (StringUtil.isNotEmpty(redisCache.getCache(token))){
-            String users = redisCache.getCache(StringUtil.addPrefix(token));
-            if (StringUtil.isNotEmpty(users)){
-                jsonObject=JSON.parseObject(users);
-                jsonObject.put("code",0);
-                return jsonObject.toJSONString();
-            }else {
-                jsonObject.put("code",1);
-                jsonObject.put("msg","user info null");
-                return jsonObject.toJSONString();
-            }
-        }else {
-            jsonObject.put("code",2);
-            jsonObject.put("msg","token authentication fail!");
-            return jsonObject.toJSONString();
-        }
+    public String unifauth(@RequestParam("token") String token,@RequestParam("ctype") String ctype,@RequestParam String userName){
+        JSONObject jsonObject = authenticationService.unifauthService(token,ctype,userName);
+        return jsonObject.toJSONString();
     }
 }

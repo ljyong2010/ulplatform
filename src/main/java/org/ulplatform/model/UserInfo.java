@@ -7,28 +7,11 @@ import java.io.Serializable;
  */
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = -190734710746841476L;
-    private String userid;
-    private String cid;
     private String userName;
-    private String passWord;
-    private String type;
-    private String redirectUrl;
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getCid() {
-        return cid;
-    }
-
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
+    private String name;
+    private String department;
+    private String telephone;
+    private String ctype;
 
     public String getUserName() {
         return userName;
@@ -38,39 +21,46 @@ public class UserInfo implements Serializable {
         this.userName = userName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getName() {
+        return name;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getRedirectUrl() {
-        return redirectUrl;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setRedirectUrl(String redirectUrl) {
-        this.redirectUrl = redirectUrl;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getCtype() {
+        return ctype;
+    }
+
+    public void setCtype(String ctype) {
+        this.ctype = ctype;
     }
 
     @Override
     public String toString() {
         return "UserInfo{" +
-                "userid='" + userid + '\'' +
-                ", cid='" + cid + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", type='" + type + '\'' +
-                ", redirectUrl='" + redirectUrl + '\'' +
+                "userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", ctype='" + ctype + '\'' +
                 '}';
     }
 }
