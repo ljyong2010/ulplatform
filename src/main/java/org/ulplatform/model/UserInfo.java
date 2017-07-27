@@ -7,28 +7,20 @@ import java.io.Serializable;
  */
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = -190734710746841476L;
-    private String userName;
-    private String userid;
+    private String userId;
     private String name;
-    private String deptcode;
-    private String department;
-    private String telephone;
+    private String deptId;
+    private String deptCode;
+    private String deptName;
+    private String phone;
     private String systemId;
 
-    public String getUserName() {
-        return userName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -39,28 +31,36 @@ public class UserInfo implements Serializable {
         this.name = name;
     }
 
-    public String getDeptcode() {
-        return deptcode;
+    public String getDeptId() {
+        return deptId;
     }
 
-    public void setDeptcode(String deptcode) {
-        this.deptcode = deptcode;
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDeptCode() {
+        return deptCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getSystemId() {
@@ -69,18 +69,5 @@ public class UserInfo implements Serializable {
 
     public void setSystemId(String systemId) {
         this.systemId = systemId;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "userName='" + userName + '\'' +
-                ", userid='" + userid + '\'' +
-                ", name='" + name + '\'' +
-                ", deptcode='" + deptcode + '\'' +
-                ", department='" + department + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", systemId='" + systemId + '\'' +
-                '}';
     }
 }

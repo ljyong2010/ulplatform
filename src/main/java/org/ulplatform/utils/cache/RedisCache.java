@@ -15,7 +15,7 @@ import java.util.Set;
 public class RedisCache {
 
     public final static String CAHCENAME="cache";//缓存名
-    public final static int CAHCETIME=60;//默认缓存时间
+    public final static int CAHCETIME=600;//默认缓存时间
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
@@ -31,18 +31,40 @@ public class RedisCache {
         });
         return result;
     }
-    public  void putCacheWithExpireTime(String key, String obj, final long expireTime) {
+    public  boolean putCacheWithExpireTime(String key, String obj, final long expireTime) {
         final byte[] bkey = key.getBytes();
         final byte[] bvalue = obj.getBytes();
-        redisTemplate.execute(new RedisCallback<Boolean>() {
+        boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {
             @Override
             public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
                 connection.setEx(bkey, expireTime, bvalue);
                 return true;
             }
         });
+        return result;
     }
 
+    /**
+     * update
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean updateCache(final String key,final String value){
+        if (key==null){
+            throw new NullPointerException("key is null");
+        }
+        final byte[] bkey=key.getBytes();
+        final byte[] bvalue=value.getBytes();
+        boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.set(bkey,bvalue);
+                return true;
+            }
+        });
+        return result;
+    }
     public String getCache(final String key) {
         byte[] result = redisTemplate.execute(new RedisCallback<byte[]>() {
             @Override

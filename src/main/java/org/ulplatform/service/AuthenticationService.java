@@ -1,6 +1,7 @@
 package org.ulplatform.service;
 
 import com.alibaba.fastjson.JSONObject;
+import org.ulplatform.model.OauthInfo;
 import org.ulplatform.model.UserInfo;
 
 /**
@@ -9,5 +10,6 @@ import org.ulplatform.model.UserInfo;
 public interface AuthenticationService {
     public JSONObject createTokenService(String userid,String urltype);
     public JSONObject sendListUserInfoService(String token, UserInfo userInfo);
-    public JSONObject unifauthService(String token,String systemId,String userName);
+    public JSONObject unifauthService(String token, OauthInfo oauthInfo);
+    public JSONObject logoutService(String token);
 }
