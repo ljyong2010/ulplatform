@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ulplatform.dao.mapper.ToHorizonUserMapper">
+  <resultMap id="BaseResultMap" type="org.ulplatform.dao.ToHorizonUser">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ACTIVE" jdbcType="DECIMAL" property="active" />
+    <result column="ORDER_NO" jdbcType="DECIMAL" property="orderNo" />
+    <result column="USER_STYLE" jdbcType="VARCHAR" property="userStyle" />
+    <result column="DELETE_TIME" jdbcType="VARCHAR" property="deleteTime" />
+    <result column="REGISTER_TIME" jdbcType="VARCHAR" property="registerTime" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="FIRSTNAME" jdbcType="VARCHAR" property="firstname" />
+    <result column="GIVENNAME" jdbcType="VARCHAR" property="givenname" />
+    <result column="EMP_NUM" jdbcType="VARCHAR" property="empNum" />
+    <result column="CERTIFICATE" jdbcType="VARCHAR" property="certificate" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="BIRTH_DATE" jdbcType="VARCHAR" property="birthDate" />
+    <result column="HAS_IMAGE" jdbcType="DECIMAL" property="hasImage" />
+    <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone" />
+    <result column="CELLPHONE" jdbcType="VARCHAR" property="cellphone" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+    <result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="SEC_ID" jdbcType="VARCHAR" property="secId" />
+    <result column="ENGNAME" jdbcType="VARCHAR" property="engname" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
+    <result column="DN" jdbcType="VARCHAR" property="dn" />
+    <result column="WORK_DESC" jdbcType="VARCHAR" property="workDesc" />
+    <result column="F1" jdbcType="VARCHAR" property="f1" />
+    <result column="F2" jdbcType="VARCHAR" property="f2" />
+    <result column="F3" jdbcType="VARCHAR" property="f3" />
+    <result column="F4" jdbcType="VARCHAR" property="f4" />
+    <result column="F5" jdbcType="VARCHAR" property="f5" />
+    <result column="F6" jdbcType="VARCHAR" property="f6" />
+    <result column="F7" jdbcType="VARCHAR" property="f7" />
+    <result column="F8" jdbcType="VARCHAR" property="f8" />
+    <result column="F9" jdbcType="VARCHAR" property="f9" />
+    <result column="F10" jdbcType="VARCHAR" property="f10" />
+    <result column="TELEPHONE_HOME" jdbcType="VARCHAR" property="telephoneHome" />
+    <result column="OTHER_POSITION" jdbcType="VARCHAR" property="otherPosition" />
+    <result column="LDAP_UNID" jdbcType="VARCHAR" property="ldapUnid" />
+    <result column="ISNEW" jdbcType="DECIMAL" property="isnew" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, LOGIN_NAME, EMAIL, ACTIVE, ORDER_NO, USER_STYLE, DELETE_TIME, REGISTER_TIME, 
+    PASSWORD, FIRSTNAME, GIVENNAME, EMP_NUM, CERTIFICATE, SEX, BIRTH_DATE, HAS_IMAGE, 
+    TELEPHONE, CELLPHONE, CERT_TYPE, CERT_NO, POSTCODE, ADDRESS, IP, COMMENTS, SEC_ID, 
+    ENGNAME, POSITION, FAX, DN, WORK_DESC, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, TELEPHONE_HOME, 
+    OTHER_POSITION, LDAP_UNID, ISNEW
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TO_HORIZON_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TO_HORIZON_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.ulplatform.dao.ToHorizonUser">
+    insert into TO_HORIZON_USER (ID, NAME, LOGIN_NAME, 
+      EMAIL, ACTIVE, ORDER_NO, 
+      USER_STYLE, DELETE_TIME, REGISTER_TIME, 
+      PASSWORD, FIRSTNAME, GIVENNAME, 
+      EMP_NUM, CERTIFICATE, SEX, 
+      BIRTH_DATE, HAS_IMAGE, TELEPHONE, 
+      CELLPHONE, CERT_TYPE, CERT_NO, 
+      POSTCODE, ADDRESS, IP, 
+      COMMENTS, SEC_ID, ENGNAME, 
+      POSITION, FAX, DN, 
+      WORK_DESC, F1, F2, F3, 
+      F4, F5, F6, F7, 
+      F8, F9, F10, TELEPHONE_HOME, 
+      OTHER_POSITION, LDAP_UNID, ISNEW
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{active,jdbcType=DECIMAL}, #{orderNo,jdbcType=DECIMAL}, 
+      #{userStyle,jdbcType=VARCHAR}, #{deleteTime,jdbcType=VARCHAR}, #{registerTime,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{firstname,jdbcType=VARCHAR}, #{givenname,jdbcType=VARCHAR}, 
+      #{empNum,jdbcType=VARCHAR}, #{certificate,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthDate,jdbcType=VARCHAR}, #{hasImage,jdbcType=DECIMAL}, #{telephone,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{comments,jdbcType=VARCHAR}, #{secId,jdbcType=VARCHAR}, #{engname,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{dn,jdbcType=VARCHAR}, 
+      #{workDesc,jdbcType=VARCHAR}, #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR}, 
+      #{f4,jdbcType=VARCHAR}, #{f5,jdbcType=VARCHAR}, #{f6,jdbcType=VARCHAR}, #{f7,jdbcType=VARCHAR}, 
+      #{f8,jdbcType=VARCHAR}, #{f9,jdbcType=VARCHAR}, #{f10,jdbcType=VARCHAR}, #{telephoneHome,jdbcType=VARCHAR}, 
+      #{otherPosition,jdbcType=VARCHAR}, #{ldapUnid,jdbcType=VARCHAR}, #{isnew,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.ulplatform.dao.ToHorizonUser">
+    insert into TO_HORIZON_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="active != null">
+        ACTIVE,
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+      <if test="userStyle != null">
+        USER_STYLE,
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME,
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="firstname != null">
+        FIRSTNAME,
+      </if>
+      <if test="givenname != null">
+        GIVENNAME,
+      </if>
+      <if test="empNum != null">
+        EMP_NUM,
+      </if>
+      <if test="certificate != null">
+        CERTIFICATE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="birthDate != null">
+        BIRTH_DATE,
+      </if>
+      <if test="hasImage != null">
+        HAS_IMAGE,
+      </if>
+      <if test="telephone != null">
+        TELEPHONE,
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNo != null">
+        CERT_NO,
+      </if>
+      <if test="postcode != null">
+        POSTCODE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="secId != null">
+        SEC_ID,
+      </if>
+      <if test="engname != null">
+        ENGNAME,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="fax != null">
+        FAX,
+      </if>
+      <if test="dn != null">
+        DN,
+      </if>
+      <if test="workDesc != null">
+        WORK_DESC,
+      </if>
+      <if test="f1 != null">
+        F1,
+      </if>
+      <if test="f2 != null">
+        F2,
+      </if>
+      <if test="f3 != null">
+        F3,
+      </if>
+      <if test="f4 != null">
+        F4,
+      </if>
+      <if test="f5 != null">
+        F5,
+      </if>
+      <if test="f6 != null">
+        F6,
+      </if>
+      <if test="f7 != null">
+        F7,
+      </if>
+      <if test="f8 != null">
+        F8,
+      </if>
+      <if test="f9 != null">
+        F9,
+      </if>
+      <if test="f10 != null">
+        F10,
+      </if>
+      <if test="telephoneHome != null">
+        TELEPHONE_HOME,
+      </if>
+      <if test="otherPosition != null">
+        OTHER_POSITION,
+      </if>
+      <if test="ldapUnid != null">
+        LDAP_UNID,
+      </if>
+      <if test="isnew != null">
+        ISNEW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        #{active,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=DECIMAL},
+      </if>
+      <if test="userStyle != null">
+        #{userStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="firstname != null">
+        #{firstname,jdbcType=VARCHAR},
+      </if>
+      <if test="givenname != null">
+        #{givenname,jdbcType=VARCHAR},
+      </if>
+      <if test="empNum != null">
+        #{empNum,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null">
+        #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasImage != null">
+        #{hasImage,jdbcType=DECIMAL},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="secId != null">
+        #{secId,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null">
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="dn != null">
+        #{dn,jdbcType=VARCHAR},
+      </if>
+      <if test="workDesc != null">
+        #{workDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null">
+        #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="f7 != null">
+        #{f7,jdbcType=VARCHAR},
+      </if>
+      <if test="f8 != null">
+        #{f8,jdbcType=VARCHAR},
+      </if>
+      <if test="f9 != null">
+        #{f9,jdbcType=VARCHAR},
+      </if>
+      <if test="f10 != null">
+        #{f10,jdbcType=VARCHAR},
+      </if>
+      <if test="telephoneHome != null">
+        #{telephoneHome,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPosition != null">
+        #{otherPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="ldapUnid != null">
+        #{ldapUnid,jdbcType=VARCHAR},
+      </if>
+      <if test="isnew != null">
+        #{isnew,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.ulplatform.dao.ToHorizonUser">
+    update TO_HORIZON_USER
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        ACTIVE = #{active,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=DECIMAL},
+      </if>
+      <if test="userStyle != null">
+        USER_STYLE = #{userStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME = #{deleteTime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="firstname != null">
+        FIRSTNAME = #{firstname,jdbcType=VARCHAR},
+      </if>
+      <if test="givenname != null">
+        GIVENNAME = #{givenname,jdbcType=VARCHAR},
+      </if>
+      <if test="empNum != null">
+        EMP_NUM = #{empNum,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null">
+        CERTIFICATE = #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        BIRTH_DATE = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasImage != null">
+        HAS_IMAGE = #{hasImage,jdbcType=DECIMAL},
+      </if>
+      <if test="telephone != null">
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        CERT_NO = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        POSTCODE = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="secId != null">
+        SEC_ID = #{secId,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null">
+        ENGNAME = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="dn != null">
+        DN = #{dn,jdbcType=VARCHAR},
+      </if>
+      <if test="workDesc != null">
+        WORK_DESC = #{workDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        F1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        F2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        F3 = #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        F4 = #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        F5 = #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null">
+        F6 = #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="f7 != null">
+        F7 = #{f7,jdbcType=VARCHAR},
+      </if>
+      <if test="f8 != null">
+        F8 = #{f8,jdbcType=VARCHAR},
+      </if>
+      <if test="f9 != null">
+        F9 = #{f9,jdbcType=VARCHAR},
+      </if>
+      <if test="f10 != null">
+        F10 = #{f10,jdbcType=VARCHAR},
+      </if>
+      <if test="telephoneHome != null">
+        TELEPHONE_HOME = #{telephoneHome,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPosition != null">
+        OTHER_POSITION = #{otherPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="ldapUnid != null">
+        LDAP_UNID = #{ldapUnid,jdbcType=VARCHAR},
+      </if>
+      <if test="isnew != null">
+        ISNEW = #{isnew,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.ulplatform.dao.ToHorizonUser">
+    update TO_HORIZON_USER
+    set NAME = #{name,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ACTIVE = #{active,jdbcType=DECIMAL},
+      ORDER_NO = #{orderNo,jdbcType=DECIMAL},
+      USER_STYLE = #{userStyle,jdbcType=VARCHAR},
+      DELETE_TIME = #{deleteTime,jdbcType=VARCHAR},
+      REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      FIRSTNAME = #{firstname,jdbcType=VARCHAR},
+      GIVENNAME = #{givenname,jdbcType=VARCHAR},
+      EMP_NUM = #{empNum,jdbcType=VARCHAR},
+      CERTIFICATE = #{certificate,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      BIRTH_DATE = #{birthDate,jdbcType=VARCHAR},
+      HAS_IMAGE = #{hasImage,jdbcType=DECIMAL},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      CERT_NO = #{certNo,jdbcType=VARCHAR},
+      POSTCODE = #{postcode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      SEC_ID = #{secId,jdbcType=VARCHAR},
+      ENGNAME = #{engname,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      DN = #{dn,jdbcType=VARCHAR},
+      WORK_DESC = #{workDesc,jdbcType=VARCHAR},
+      F1 = #{f1,jdbcType=VARCHAR},
+      F2 = #{f2,jdbcType=VARCHAR},
+      F3 = #{f3,jdbcType=VARCHAR},
+      F4 = #{f4,jdbcType=VARCHAR},
+      F5 = #{f5,jdbcType=VARCHAR},
+      F6 = #{f6,jdbcType=VARCHAR},
+      F7 = #{f7,jdbcType=VARCHAR},
+      F8 = #{f8,jdbcType=VARCHAR},
+      F9 = #{f9,jdbcType=VARCHAR},
+      F10 = #{f10,jdbcType=VARCHAR},
+      TELEPHONE_HOME = #{telephoneHome,jdbcType=VARCHAR},
+      OTHER_POSITION = #{otherPosition,jdbcType=VARCHAR},
+      LDAP_UNID = #{ldapUnid,jdbcType=VARCHAR},
+      ISNEW = #{isnew,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByLoginName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT ID FROM TO_HORIZON_USER WHERE LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+  </select>
+</mapper>
