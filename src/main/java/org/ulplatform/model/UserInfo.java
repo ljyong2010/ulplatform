@@ -14,6 +14,8 @@ public class UserInfo implements Serializable {
     private String deptName;
     private String phone;
     private String systemId;
+    private String entityId;
+    private String entityName;
 
     public String getUserId() {
         return userId;
@@ -69,5 +71,21 @@ public class UserInfo implements Serializable {
 
     public void setSystemId(String systemId) {
         this.systemId = systemId;
+    }
+
+    public String getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
+    }
+
+    public String getEntityName() {
+        return entityName;
+    }
+
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
     }
 }

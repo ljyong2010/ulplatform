@@ -45,6 +45,23 @@ public class RedisCache {
     }
 
     /**
+     * 判断key是否存在
+     * @param key
+     * @return
+     */
+    public boolean exitKey(String key){
+        final byte[] bkey = key.getBytes();
+        boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {
+            boolean ret = false;
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                ret = connection.exists(bkey);
+                return ret;
+            }
+        });
+        return result;
+    }
+    /**
      * update
      * @param key
      * @param value

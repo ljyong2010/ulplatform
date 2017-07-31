@@ -1,6 +1,8 @@
 package org.ulplatform.model;
 
-public class OauthInfo {
+import java.io.Serializable;
+
+public class OauthInfo implements Serializable {
     private static final long serialVersionUID = -190734310746841478L;
     private String systemId;
     private String phone;

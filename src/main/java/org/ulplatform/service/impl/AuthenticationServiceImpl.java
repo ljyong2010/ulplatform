@@ -26,23 +26,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private RedisCache redisCache;
 
     @Override
-    public JSONObject createTokenService(String userId,String urlType) {
+    public JSONObject createTokenService(String userId,String systemId,String urlType) {
         JSONObject jsonObject = new JSONObject();
         if (StringUtil.isequals(urlType,"hyjkoa")){
             DefaultTokenManager defaultTokenManager = new DefaultTokenManager();
             String token="";
             try {
-                if (StringUtil.isNotEmpty(redisCache.getCache(userId))){
-                    jsonObject.put("token",redisCache.getCache(userId));
-                    jsonObject.put("code",1);
-                    return jsonObject;
-                }else {
                     token = defaultTokenManager.createToken(userId);
-                    redisCache.putCache(userId,token);
+                    redisCache.putCacheWithExpireTime(token,userId+systemId,Constant.CACHEEXPIRE);
                     jsonObject.put("token",token);
                     jsonObject.put("code",0);
                     return jsonObject;
-                }
             }catch (Exception e){
                 LOGGER.error("create token fail!");
                 jsonObject.put("token","create token error");
@@ -60,8 +54,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JSONObject sendListUserInfoService(String token, UserInfo userInfo) {
 
         JSONObject jsonObject = new JSONObject();
-        if (StringUtil.isequals(token,redisCache.getCache(userInfo.getUserId()))){
+        if (StringUtil.isequals(redisCache.getCache(token),userInfo.getUserId()+userInfo.getSystemId())){
             String users = JSON.toJSONString(userInfo);
+            redisCache.deleteCache(token);
             if(redisCache.putCacheWithExpireTime(token,users, Constant.CACHEEXPIRE)){
                 jsonObject.put("msg","success");
                 jsonObject.put("code",0);
@@ -89,23 +84,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 jsonObject=JSON.parseObject(users);
                 if (StringUtil.isequals(oauthInfo.getSystemId(),jsonObject.getString("systemId"))&&StringUtil.isequals(oauthInfo.getPhone(),jsonObject.getString("phone"))){
                     String loginToken = defaultTokenManager.createToken("");
-                    if (redisCache.updateCache(jsonObject.getString("userId"),loginToken)){
-                        redisCache.putCache(loginToken,jsonObject.getString("userId"));
+                    try {
+                        redisCache.putCacheWithExpireTime(loginToken,token,Constant.CACHEEXPIRE);
                         retJson.put("token",loginToken);
                         retJson.put("code",0);
-                        retJson.put("msg","success");
                         redisCache.deleteCache(token);
                         return retJson;
-                    }else {
-                        retJson.put("token","");
-                        retJson.put("code",404);
-                        retJson.put("msg","create token error");
+                    }catch (Exception e){
+                        LOGGER.error("create token fail!");
+                        retJson.put("token","create token error");
+                        retJson.put("code",401);
                         return retJson;
                     }
                 }else {
                     retJson.put("token","");
                     retJson.put("code",401);
                     retJson.put("msg","type or userName authentication fail");
+                    redisCache.deleteCache(token);
                     return retJson;
                 }
 
@@ -113,6 +108,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 retJson.put("token","");
                 retJson.put("code",402);
                 retJson.put("msg","user info null");
+                redisCache.deleteCache(token);
                 return retJson;
             }
         }else {
@@ -126,10 +122,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JSONObject logoutService(String token) {
         JSONObject retJson = new JSONObject();
-        String identId = redisCache.getCache(token);
-        if (StringUtil.isNotEmpty(identId)){
+        if (redisCache.exitKey(token)){
             try {
-                redisCache.deleteCache(identId);
                 redisCache.deleteCache(token);
                 retJson.put("code",0);
                 retJson.put("msg","logout success!");
@@ -138,7 +132,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 retJson.put("msg","logout fail!");
                 LOGGER.error("delete fail!");
             }
+            return retJson;
+        }else {
+            retJson.put("code",0);
+            retJson.put("msg","");
+            return retJson;
         }
-        return retJson;
     }
 }

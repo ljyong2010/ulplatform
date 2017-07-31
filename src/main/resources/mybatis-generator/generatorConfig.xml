@@ -32,15 +32,20 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="AUTHORMENU" domainObjectName="AuthorMenu">
+        <!--<table tableName="AUTHORMENU" domainObjectName="AuthorMenu">
+        </table>-->
+        <table tableName="TO_HORIZON_USER" domainObjectName="ToHorizonUser"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
         </table>
-        <!--<table tableName="DEPARTUSER" domainObjectName="DepartUser"
+       <!-- <table tableName="DEPARTUSER" domainObjectName="DepartUser"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>-->
-        <table tableName="DEPARTUSER" domainObjectName="DepartUser">
-        </table>
+        <!--<table tableName="DEPARTUSER" domainObjectName="DepartUser">
+        </table>-->
 
     </context>
 </generatorConfiguration>
